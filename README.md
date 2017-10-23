@@ -791,3 +791,8 @@ As a result, this use-case is not supported by this library. The only workaround
   using their previous Redshift to S3 authentication mechanism. For a discussion of the three
   authentication mechanisms and their security trade-offs, see the [_Authenticating to S3 and
   Redshift_](#authenticating-to-s3-and-redshift) section of this README.
+
+## Release process
+
+To prepare staging release, run `sbt publishSigned`.
+To release, run `sbt release`.

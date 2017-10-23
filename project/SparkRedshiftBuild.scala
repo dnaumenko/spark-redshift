@@ -151,14 +151,19 @@ object SparkRedshiftBuild extends Build {
       fork in Test := true,
       javaOptions in Test ++= Seq("-Xms512M", "-Xmx2048M", "-XX:MaxPermSize=2048M"),
 
-      /********************
-       * Release settings *
-       ********************/
-
+      // Release settings
       publishMavenStyle := true,
       releaseCrossBuild := true,
       licenses += ("Apache-2.0", url("http://www.apache.org/licenses/LICENSE-2.0")),
       releasePublishArtifactsAction := PgpKeys.publishSigned.value,
+
+      publishTo := {
+        val nexus = "https://oss.sonatype.org/"
+        if (isSnapshot.value)
+          Some("snapshots" at nexus + "content/repositories/snapshots")
+        else
+          Some("releases"  at nexus + "service/local/staging/deploy/maven2")
+      },
 
       pomExtra :=
         <url>https://github.com/dnaumenko/spark-redshift</url>
@@ -184,7 +189,7 @@ object SparkRedshiftBuild extends Build {
         setReleaseVersion,
         commitReleaseVersion,
         tagRelease,
-        publishArtifacts,
+        releaseStepCommand("sonatypeRelease"),
         setNextVersion,
         commitNextVersion,
         pushChanges
