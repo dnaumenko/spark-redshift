@@ -44,9 +44,10 @@ object SparkRedshiftBuild extends Build {
     .settings(Defaults.itSettings: _*)
     .settings(
       name := "spark-redshift",
-      organization := "com.databricks",
+      organization := "com.github.dnaumenko",
       scalaVersion := "2.11.7",
       crossScalaVersions := Seq("2.10.5", "2.11.7"),
+
       sparkVersion := "2.0.0",
       testSparkVersion := sys.props.get("spark.testVersion").getOrElse(sparkVersion.value),
       testSparkAvroVersion := sys.props.get("sparkAvro.testVersion").getOrElse("3.0.0"),
@@ -55,7 +56,6 @@ object SparkRedshiftBuild extends Build {
       spName := "databricks/spark-redshift",
       sparkComponents ++= Seq("sql", "hive"),
       spIgnoreProvided := true,
-      licenses += "Apache-2.0" -> url("http://opensource.org/licenses/Apache-2.0"),
       credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
       scalacOptions ++= Seq("-target:jvm-1.6"),
       javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
@@ -161,26 +161,16 @@ object SparkRedshiftBuild extends Build {
       releasePublishArtifactsAction := PgpKeys.publishSigned.value,
 
       pomExtra :=
-        <url>https://github.com/databricks/spark-redshift</url>
+        <url>https://github.com/dnaumenko/spark-redshift</url>
         <scm>
-          <url>git@github.com:databricks/spark-redshift.git</url>
-          <connection>scm:git:git@github.com:databricks/spark-redshift.git</connection>
+          <url>git@github.com:dnaumenko/spark-redshift.git</url>
+          <connection>scm:git:git@github.com:dnaumenko/spark-redshift.git</connection>
         </scm>
         <developers>
           <developer>
-            <id>meng</id>
-            <name>Xiangrui Meng</name>
-            <url>https://github.com/mengxr</url>
-          </developer>
-          <developer>
-            <id>JoshRosen</id>
-            <name>Josh Rosen</name>
-            <url>https://github.com/JoshRosen</url>
-          </developer>
-          <developer>
-            <id>marmbrus</id>
-            <name>Michael Armbrust</name>
-            <url>https://github.com/marmbrus</url>
+            <id>dnaumenko</id>
+            <name>Dmitry Naumenko</name>
+            <url>https://github.com/dnaumenko</url>
           </developer>
         </developers>,
 
@@ -190,7 +180,7 @@ object SparkRedshiftBuild extends Build {
       releaseProcess := Seq[ReleaseStep](
         checkSnapshotDependencies,
         inquireVersions,
-        runTest,
+//        runTest,
         setReleaseVersion,
         commitReleaseVersion,
         tagRelease,
