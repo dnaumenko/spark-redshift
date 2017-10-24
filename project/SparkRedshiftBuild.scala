@@ -24,7 +24,6 @@ import scoverage.ScoverageKeys
 import sbtrelease.ReleasePlugin.autoImport._
 import sbtrelease.ReleasePlugin.autoImport.ReleaseTransformations._
 import com.typesafe.sbt.pgp._
-import bintray.BintrayPlugin.autoImport._
 
 object SparkRedshiftBuild extends Build {
   val testSparkVersion = settingKey[String]("Spark version to test against")
@@ -178,8 +177,6 @@ object SparkRedshiftBuild extends Build {
             <url>https://github.com/dnaumenko</url>
           </developer>
         </developers>,
-
-      bintrayReleaseOnPublish in ThisBuild := false,
 
       // Add publishing to spark packages as another step.
       releaseProcess := Seq[ReleaseStep](
