@@ -1,7 +1,12 @@
 # Redshift Data Source for Apache Spark
 
-[![Build Status](https://travis-ci.org/databricks/spark-redshift.svg?branch=master)](https://travis-ci.org/databricks/spark-redshift)
-[![codecov.io](http://codecov.io/github/databricks/spark-redshift/coverage.svg?branch=master)](http://codecov.io/github/databricks/spark-redshift?branch=master)
+**It's a fork of Databrick's library. It's published in Central Maven Repo with different groupId**
+
+##### Changes in fork
+
+* SMALLINT parsed as ShortType
+
+# Introduction
 
 A library to load data into Spark SQL DataFrames from Amazon Redshift, and write them back to
 Redshift tables. Amazon S3 is used to efficiently transfer data in and out of Redshift, and
@@ -32,23 +37,19 @@ This library is more suited to ETL than interactive queries, since large amounts
 
 This library requires Apache Spark 2.0+ and Amazon Redshift 1.0.963+.
 
-For version that works with Spark 1.x, please check for the [1.x branch](https://github.com/databricks/spark-redshift/tree/branch-1.x).
-
-You may use this library in your applications with the following dependency information:
-
 **Scala 2.10**
 
 ```
-groupId: com.databricks
+groupId: com.github.dnaumenko
 artifactId: spark-redshift_2.10
-version: 3.0.0-preview1
+version: 2.0.2
 ```
 
 **Scala 2.11**
 ```
-groupId: com.databricks
+groupId: com.github.dnaumenko
 artifactId: spark-redshift_2.11
-version: 3.0.0-preview1
+version: 2.0.2
 ```
 
 You will also need to provide a JDBC driver that is compatible with Redshift. Amazon recommend that you use [their driver](http://docs.aws.amazon.com/redshift/latest/mgmt/configure-jdbc-connection.html), which is distributed as a JAR that is hosted on Amazon's website. This library has also been successfully tested using the Postgres JDBC driver.
