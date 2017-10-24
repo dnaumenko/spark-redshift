@@ -55,7 +55,7 @@ object SparkRedshiftBuild extends Build {
       spName := "databricks/spark-redshift",
       sparkComponents ++= Seq("sql", "hive"),
       spIgnoreProvided := true,
-      credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
+//      credentials += Credentials(Path.userHome / ".ivy2" / ".credentials"),
       scalacOptions ++= Seq("-target:jvm-1.6"),
       javacOptions ++= Seq("-source", "1.6", "-target", "1.6"),
       libraryDependencies ++= Seq(
