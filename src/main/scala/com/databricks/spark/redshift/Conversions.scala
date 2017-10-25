@@ -70,7 +70,7 @@ private[redshift] object Conversions {
    * SimpleDateFormat across threads.
    */
   def createRedshiftTimestampFormat(): SimpleDateFormat = {
-    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSS")
+    new SimpleDateFormat("yyyy-MM-dd HH:mm:ss.SSSSSS Z")
   }
 
   /**
