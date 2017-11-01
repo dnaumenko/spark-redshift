@@ -4,7 +4,8 @@
 
 ##### Changes in fork
 
-* SMALLINT parsed as ShortType
+* <tt>SMALLINT<tt> parsed as ShortType
+* extraunloadoptions is available. Works similar to extracopyoption, but for <tt>UNLOAD</tt> command
 
 # Introduction
 
@@ -563,7 +564,7 @@ table, the changes will be reverted and the backup table restored if post action
     <td>No</td>
     <td>No default</td>
     <td>
-<p>A list extra options to append to the Redshift <tt>COPY</tt> command when loading data, e.g. <tt>TRUNCATECOLUMNS</tt>
+<p>A list of extra options to append to the Redshift <tt>COPY</tt> command when loading data, e.g. <tt>TRUNCATECOLUMNS</tt>
 or <TT>MAXERROR n</tt> (see the <a href="http://docs.aws.amazon.com/redshift/latest/dg/r_COPY.html#r_COPY-syntax-overview-optional-parameters">Redshift docs</a>
 for other options).</p>
 
@@ -571,6 +572,19 @@ for other options).</p>
 at the end of the command can be used, but that should cover most possible use cases.</p>
     </td>
  </tr>
+ <tr>
+       <td><tt>extraunloadoptions</tt></td>
+       <td>No</td>
+       <td>No default</td>
+       <td>
+   <p>A list of extra options to append to the Redshift <tt>UNLOAD</tt> command when unloading data, e.g. <tt>PARALLEL FALSE</tt>
+   (see the <a href="http://docs.aws.amazon.com/redshift/latest/dg/r_UNLOAD.html">Redshift docs</a>
+   for other options). Please, note that <tt>UNLOAD<tt> is using ESCAPE and MANIFEST and you can't overwrite it.</p>
+   
+   <p>Note that since these options are appended to the end of the <tt>COPY</tt> command, only options that make sense
+   at the end of the command can be used, but that should cover most possible use cases.</p>
+       </td>
+  </tr>
  <tr>
     <td><tt>tempformat</tt>  (Experimental)</td>
     <td>No</td>
