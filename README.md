@@ -4,7 +4,7 @@
 
 ##### Changes in fork
 
-* <tt>SMALLINT<tt> parsed as ShortType
+* <tt>SMALLINT</tt> parsed as ShortType
 * extraunloadoptions is available. Works similar to extracopyoption, but for <tt>UNLOAD</tt> command
 
 # Introduction
