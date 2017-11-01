@@ -172,14 +172,15 @@ private[redshift] case class RedshiftRelation(
     val query = {
       // Since the query passed to UNLOAD will be enclosed in single quotes, we need to escape
       // any backslashes and single quotes that appear in the query itself
-      val escapedTableNameOrSubqury = tableNameOrSubquery.replace("\\", "\\\\").replace("'", "\\'")
-      s"SELECT $columnList FROM $escapedTableNameOrSubqury $whereClause"
+      val escapedTableNameOrSubquery = tableNameOrSubquery.replace("\\", "\\\\").replace("'", "\\'")
+      s"SELECT $columnList FROM $escapedTableNameOrSubquery $whereClause"
     }
     // We need to remove S3 credentials from the unload path URI because they will conflict with
     // the credentials passed via `credsString`.
     val fixedUrl = Utils.fixS3Url(Utils.removeCredentialsFromURI(new URI(tempDir)).toString)
 
-    s"UNLOAD ('$query') TO '$fixedUrl' WITH CREDENTIALS '$credsString' ESCAPE MANIFEST"
+    s"UNLOAD ('$query') TO '$fixedUrl' WITH CREDENTIALS '$credsString' " +
+      s"ESCAPE MANIFEST ${params.extraUnloadOptions}"
   }
 
   private def pruneSchema(schema: StructType, columns: Array[String]): StructType = {
